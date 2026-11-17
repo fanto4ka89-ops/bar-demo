@@ -74,13 +74,13 @@
   .bar__menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: .55rem; height: 2px; background: var(--v-accent); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--v-ease-out); }
   .bar__menu a:hover::after, .bar__menu a:focus-visible::after { transform: scaleX(1); }
   .bar { background: var(--v-canvas-85); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--v-hair); }
-  @media (max-width: 700px) {
+  @media (max-width: 920px) {
     .bar { flex-wrap: wrap; row-gap: 0; padding-bottom: 0; }
     .bar__menu { order: 3; flex: 0 0 100%; margin: 0 calc(-1 * var(--v-gutter)); padding: 0 var(--v-gutter); overflow-x: auto; gap: var(--v-5); scrollbar-width: none; }
     .bar__menu a { font-size: .95rem; white-space: nowrap; }
     .bar__right { margin-left: auto; }
   }
-  @media (max-width: 700px) {
+  @media (max-width: 920px) {
     .bar__tel { display: none; }
     .bar .v-btn { padding: 0 1em; min-height: 44px; font-size: .95rem; }
   }
@@ -96,7 +96,7 @@
     background: linear-gradient(to right, rgb(14 26 21 / .86) 0%, rgb(14 26 21 / .45) 42%, transparent 70%), linear-gradient(to top, rgb(14 26 21 / .7), transparent 30%); }
   .hero__copy { bottom: clamp(5rem, 16vh, 10rem); max-width: min(44rem, 88vw); color: var(--v-ink); }
   .hero__label { display: block; margin-bottom: var(--v-4); color: var(--v-accent); }
-  .hero__copy .v-display { font-size: clamp(2.3rem, 1.2rem + 3.2vw, 4.2rem); }
+  .hero__copy .v-display { font-size: clamp(1.7rem, min(1.2rem + 3.2vw, 8.5vh), 4.2rem); }
   .hero__copy .v-lede { margin-top: var(--v-5); max-width: 40ch; color: color-mix(in oklab, var(--v-ink) 82%, transparent); }
   .hero__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v-4) var(--v-6); margin-top: var(--v-6); }
   .hero__tel { text-decoration: none; color: inherit; font-size: var(--v-t-sm); display: inline-flex; align-items: center; min-height: 44px; gap: .35em; }
@@ -113,6 +113,19 @@
     .hero__note { display: none; }
   }
   @media (max-width: 600px) and (max-height: 700px) { .hero__photo, .hero__wash { height: 38svh; } .hero__copy .v-lede { display: none; } }
+
+  @media (min-width: 861px) { .hero__copy { max-width: min(44rem, 58vw); } }
+  /* низкие окна (ноутбук с панелями, браузер на пол-экрана): текст сжимается и не заходит под шапку */
+  @media (min-width: 861px) and (max-height: 760px) {
+    .hero__copy { bottom: clamp(1.5rem, 6vh, 3rem); }
+    .hero__note { bottom: clamp(1.5rem, 6vh, 3rem); }
+    .hero__copy .v-lede { display: none; }
+    .hero__label { margin-bottom: var(--v-2); }
+    .hero__cta { margin-top: var(--v-4); }
+  }
+  @media (min-width: 861px) and (max-height: 520px) { .hero__label, .hero__note { display: none; } }
+  @media (max-width: 860px) and (max-height: 760px) { .hero__copy .v-lede { display: none; } .hero__copy .v-display { font-size: clamp(1.5rem, min(1.2rem + 3vw, 5.4vh), 2.2rem); } }
+  @media (max-width: 860px) and (max-height: 520px) { .v-page .hero__copy { top: 6.9rem; } .hero__label, .hero__tel { display: none; } .hero__cta { margin-top: var(--v-3); } .hero__photo, .hero__wash { height: 30svh; } }
 
   /* ---- акт 2 · пиво этой недели (список правится как текст) -------------------- */
   .beer { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: var(--v-9); align-items: start; }
@@ -146,15 +159,20 @@
   .mug__beer { transform: translateY(100%); transition: transform 1.6s cubic-bezier(.3,.7,.3,1); }
   .mug__foam { transform: translateY(100%); transition: transform 1.6s cubic-bezier(.3,.7,.3,1); }
   .mug__bub circle { opacity: 0; }
-  .mug:hover .mug__beer, .mug:focus-visible .mug__beer, .mug.is-full .mug__beer { transform: translateY(0); }
-  .mug:hover .mug__foam, .mug:focus-visible .mug__foam, .mug.is-full .mug__foam { transform: translateY(0); }
-  .mug:hover .mug__bub circle, .mug:focus-visible .mug__bub circle, .mug.is-full .mug__bub circle { animation: bub 2.2s ease-in infinite; }
+  .mug:focus-visible .mug__beer, .mug.is-full .mug__beer, .mug:focus-visible .mug__foam, .mug.is-full .mug__foam { transform: translateY(0); }
+  .mug:focus-visible .mug__bub circle, .mug.is-full .mug__bub circle { animation: bub 2.2s ease-in infinite; }
   .mug__bub circle:nth-child(2) { animation-delay: .5s !important; } .mug__bub circle:nth-child(3) { animation-delay: 1.1s !important; }
   @keyframes bub { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: .8; } 100% { opacity: 0; transform: translateY(-44px); } }
-  .mug:hover .mug__lbl::before, .mug.is-full .mug__lbl::before { content: "Наливаем…"; }
+  .mug.is-full .mug__lbl::before { content: "Наливаем…"; }
   .mug__lbl::before { content: "Наведите – нальём"; }
   @media (prefers-reduced-motion: reduce) { .mug__beer, .mug__foam { transition: none; } .mug__bub circle { animation: none !important; } }
-  @media (max-width: 860px) { .mug__lbl::before { content: "Нажмите – нальём"; } .mug.is-full .mug__lbl::before { content: "Наливаем…"; } }
+  @media (hover: none) { .mug__lbl::before { content: "Нажмите – нальём"; } .mug.is-full .mug__lbl::before { content: "Наливаем…"; } }
+  .mug { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  @media (max-width: 860px) {
+    .beer__top { flex-direction: column; align-items: flex-start; gap: var(--v-3); }
+    .mug { grid-auto-flow: column; align-items: center; gap: var(--v-3); }
+    .mug svg { width: 3.6rem; }
+  }
 
   /* ---- акт 3 · афиша ---------------------------------------------------------- */
   .gigs { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--v-9); align-items: start; }
@@ -411,9 +429,20 @@
 
 <script src="vibe.js"></script>
 <script>
+  // телефон: картинки не «открываются шторкой» при прокрутке – всегда видны целиком
+  if (window.matchMedia('(max-width: 860px)').matches) {
+    document.querySelectorAll('[data-v-reveal]').forEach(function (el) { el.removeAttribute('data-v-reveal'); el.removeAttribute('data-v-reveal-at'); });
+  }
   Vibe.mount(document.querySelector('.v-page'));
-  // кружка на телефоне: нажатие наливает / опустошает
-  (function () { var m = document.querySelector('.mug'); if (m) m.addEventListener('click', function () { m.classList.toggle('is-full'); }); })();
+  // кружка: мышь – наведение, касание и клавиатура – нажатие; работает в любом размере окна
+  (function () {
+    var m = document.querySelector('.mug'); if (!m) return;
+    var touch = false;
+    m.addEventListener('pointerdown', function (e) { touch = e.pointerType !== 'mouse'; });
+    m.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') m.classList.add('is-full'); });
+    m.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') m.classList.remove('is-full'); });
+    m.addEventListener('click', function () { if (touch || !m.matches(':hover')) m.classList.toggle('is-full'); else m.classList.add('is-full'); touch = false; });
+  })();
   (function () {
     var bar = document.querySelector('.bar'), on = null;
     function tick() { var s = window.scrollY > 40; if (s !== on) { on = s; bar.classList.toggle('is-scrolled', s); } }
