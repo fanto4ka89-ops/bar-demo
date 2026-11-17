@@ -222,10 +222,12 @@
   .reviews__meta b { color: var(--v-ink); font-weight: 600; }
   @media (max-width: 860px) { .reviews__list { grid-template-columns: 1fr; } }
 
+  #otzyvy { padding-bottom: var(--v-5); }
+
   /* ---- акт 6 · как добраться (финал держит реплику, футер в сцене) ---------- */
   .close { height: 100%; display: grid; grid-template-rows: 1fr auto; padding: 0 var(--v-gutter);
     background: radial-gradient(60rem 40rem at calc(var(--v-mx, .5) * 100%) calc(var(--v-my, .5) * 100%), var(--v-accent-10), transparent 60%); }
-  .close__inner { align-self: center; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: var(--v-8); align-items: end; padding-top: var(--v-9); }
+  .close__inner { align-self: start; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: var(--v-8); align-items: end; padding-top: clamp(5.5rem, 13vh, 7.5rem); }
   .close__inner .v-display { margin-bottom: var(--v-5); }
   .close__inner .v-lede { max-width: 40ch; }
   .close__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v-4) var(--v-6); margin-top: var(--v-6); }
@@ -237,7 +239,7 @@
   .foot { display: flex; justify-content: space-between; gap: var(--v-4); padding: var(--v-6) 0; border-top: 1px solid var(--v-hair); font-size: var(--v-t-xs); color: var(--v-ink-soft); flex-wrap: wrap; }
   @media (max-width: 860px) {
     .close { padding-bottom: env(safe-area-inset-bottom); }
-    .close__inner { grid-template-columns: 1fr; gap: var(--v-6); padding-top: var(--v-8); align-items: start; }
+    .close__inner { grid-template-columns: 1fr; gap: var(--v-6); padding-top: 7rem; align-items: start; }
     .close__tel { font-size: var(--v-t-lg); }
     .close__meta b { font-size: .9375rem; }
     .foot__more { display: none; }
@@ -396,11 +398,11 @@
     </section>
 
     <!-- 6 · ДЕЙСТВИЕ: как добраться -->
-    <section data-v-act="pin" data-v-span="1.3" data-v-drift="#0e1a15" id="kontakty" aria-label="Как добраться">
+    <section data-v-act="pin" data-v-span="1.1" data-v-drift="#0e1a15" id="kontakty" aria-label="Как добраться">
       <div data-v-stage>
         <div class="close" data-v-spotlight>
           <div class="close__inner">
-            <div data-v-cue="0.04">
+            <div data-v-cue="0 1 0 0">
               <h2 class="v-display v-display--lg">Заходите сегодня</h2>
               <p class="v-lede">Адрес, часы и дорога – ниже. Если хотите занять стол, позвоните заранее.</p>
               <div class="close__cta">
@@ -409,7 +411,7 @@
               </div>
               <p class="close__hint">Пиво и афиша – на этой странице выше, обновляются раз в неделю.</p>
             </div>
-            <div class="close__meta" data-v-cue="0.1">
+            <div class="close__meta" data-v-cue="0 1 0 0">
               <span><b>Часы работы</b>12:00 – 02:00</span>
               <span><b>Адрес</b>{{адрес}}, Краснодар</span>
               <span><b>Мы в сети</b><a href="{{соцсети}}" target="_blank" rel="noopener" data-slot-optional>{{соцсети}}</a></span>
