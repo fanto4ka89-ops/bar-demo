@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow" data-publish>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{компания}} · бар в {{город}}: пиво этой недели и афиша</title>
+<meta name="description" content="Бар «{{компания}}» в {{город}}: что в кране на этой неделе, кто играет сегодня, адрес и часы работы.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="{{компания}}">
+<meta property="og:title" content="{{компания}} – бар в {{город}}: пиво этой недели и афиша">
+<meta property="og:description" content="Что в кране на этой неделе, кто играет сегодня, адрес и часы работы.">
+<meta property="og:url" content="{{адрес сайта}}">
+<meta property="og:image" content="{{адрес сайта}}/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high" media="(min-width: 861px)">
+<link rel="preload" as="image" href="assets/hero-m.webp" fetchpriority="high" media="(max-width: 860px)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230e1a15%27/%3E%3Cpath d=%27M9 7h14l-1.6 18a2 2 0 0 1-2 1.8h-6.8a2 2 0 0 1-2-1.8z%27 fill=%27%23e08a4a%27/%3E%3Cpath d=%27M9.3 7h13.4l-.4 4H9.7z%27 fill=%27%23f2e8d8%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="vibe.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BarOrPub","name":"{{компания}}","description":"Бар: пиво этой недели и афиша выступлений.","url":"{{адрес сайта}}","image":"{{адрес сайта}}/assets/og.jpg","telephone":"{{телефон}}","openingHours":"{{часы}}","address":{"@type":"PostalAddress","streetAddress":"{{адрес}}","addressLocality":"{{город}}","addressCountry":"RU"},"sameAs":["{{соцсети}}"]}
+</script>
+<style>
+  /* ---- тема: шесть цветов, два шрифта (тёмное дерево + янтарь) --------- */
+  .v-page {
+    --v-canvas: #0e1a15; --v-surface: #1a2b23;
+    --v-ink: #ece8da; --v-ink-soft: #a9b5a6;
+    --v-accent: #e08a4a; --v-accent-ink: #1a0e06;
+    --v-font-display: "Russo One", "Arial Black", system-ui, sans-serif;
+    --v-font-text: "Golos Text", "Segoe UI", system-ui, sans-serif;
+    --v-shadow-color: 0 0 0;
+    --v-e1: 0 1px 2px rgb(var(--v-shadow-color) / .3), 0 8px 22px rgb(var(--v-shadow-color) / .35);
+    --v-e2: 0 2px 6px rgb(var(--v-shadow-color) / .35), 0 22px 54px rgb(var(--v-shadow-color) / .5);
+    --v-radius: 10px;
+    --v-display-weight: 400;
+    --v-track-tight: 0;
+    --v-t-xs: clamp(0.8125rem, 0.79rem + 0.15vw, 0.85rem);
+    --v-t-sm: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+    --v-canvas-85: color-mix(in oklab, var(--v-canvas) 85%, transparent);
+    --v-canvas-60: color-mix(in oklab, var(--v-canvas) 60%, transparent);
+    --v-accent-10: color-mix(in oklab, var(--v-accent) 10%, transparent);
+  }
+  html, body { background: #0e1a15; }
+  html { scroll-padding-top: 6rem; }
+  .v-page .v-display { line-height: 1.04; text-transform: uppercase; letter-spacing: .01em; }
+  .v-page .v-lede { font-weight: 400; }
+  .v-page .v-label { font-weight: 500; }
+  .v-page .v-btn { font-size: var(--v-t-base); font-weight: 600; }
+  .v-page h3 { font-weight: 600; }
+  @media (max-width: 860px) {
+    .hero__tel, .tap__style, .gig__meta, .fact span, .close__hint, .close__meta, .foot, .reviews__meta, .hero__note { font-size: .95rem; }
+    .v-page .v-label { font-size: .9375rem; }
+  }
+
+  /* ---- шапка -------------------------------------------------------------- */
+  .bar { position: fixed; inset: 0 0 auto 0; z-index: 30; display: flex; align-items: center; justify-content: space-between;
+    padding: var(--v-3) var(--v-gutter); gap: var(--v-4);
+    background: linear-gradient(to bottom, var(--v-canvas-85), transparent);
+    transition: background-color .3s var(--v-ease-out), box-shadow .3s var(--v-ease-out); }
+  .bar.is-scrolled { background: var(--v-canvas-85); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--v-hair); }
+  .bar__mark { font-family: var(--v-font-display); font-weight: 600; font-size: var(--v-t-lg); letter-spacing: .04em; text-transform: uppercase; text-decoration: none;
+    display: inline-flex; align-items: center; gap: .5em; min-height: 44px; white-space: nowrap; }
+  .bar__mark i { width: .8em; height: 1em; background: var(--v-accent); clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); display: inline-block; }
+  .bar__right { display: flex; align-items: center; gap: var(--v-4); }
+  .bar__tel { text-decoration: none; font-weight: 600; font-size: var(--v-t-sm); color: var(--v-ink); display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--v-2); }
+  .bar__menu { display: flex; gap: var(--v-5); margin-left: auto; margin-right: var(--v-5); }
+  .bar__menu a { text-decoration: none; color: var(--v-ink); font-size: var(--v-t-sm); font-weight: 500; letter-spacing: .02em; display: inline-flex; align-items: center; min-height: 44px; position: relative; }
+  .bar__menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: .55rem; height: 2px; background: var(--v-accent); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--v-ease-out); }
+  .bar__menu a:hover::after, .bar__menu a:focus-visible::after { transform: scaleX(1); }
+  .bar { background: var(--v-canvas-85); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--v-hair); }
+  @media (max-width: 700px) {
+    .bar { flex-wrap: wrap; row-gap: 0; padding-bottom: 0; }
+    .bar__menu { order: 3; flex: 0 0 100%; margin: 0 calc(-1 * var(--v-gutter)); padding: 0 var(--v-gutter); overflow-x: auto; gap: var(--v-5); scrollbar-width: none; }
+    .bar__menu a { font-size: .95rem; white-space: nowrap; }
+    .bar__right { margin-left: auto; }
+  }
+  @media (max-width: 700px) {
+    .bar__tel { display: none; }
+    .bar .v-btn { padding: 0 1em; min-height: 44px; font-size: .95rem; }
+  }
+
+  /* ---- акт 1 · hero: кран, тёплый свет оживает от прокрутки ------------------- */
+  .hero__photo { position: absolute; inset: 0; overflow: hidden; --hx: 70%; --hy: 50%; }
+  .hero__stack img { position: absolute; max-width: none; left: 0; top: -4%; width: 100%; height: 108%; object-fit: cover; object-position: var(--hx) var(--hy); }
+  /* фирменный ход: лампы «разгораются» – тёплый слой поверх кадра растёт от --v-p */
+  .hero__glow { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen;
+    background: radial-gradient(60% 70% at 78% 40%, rgb(255 140 70 / .34), transparent 70%);
+    opacity: clamp(0, .25 + var(--v-p, 0) * .9, 1); }
+  .hero__wash { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(to right, rgb(14 26 21 / .86) 0%, rgb(14 26 21 / .45) 42%, transparent 70%), linear-gradient(to top, rgb(14 26 21 / .7), transparent 30%); }
+  .hero__copy { bottom: clamp(5rem, 16vh, 10rem); max-width: min(44rem, 88vw); color: var(--v-ink); }
+  .hero__label { display: block; margin-bottom: var(--v-4); color: var(--v-accent); }
+  .hero__copy .v-display { font-size: clamp(2.3rem, 1.2rem + 3.2vw, 4.2rem); }
+  .hero__copy .v-lede { margin-top: var(--v-5); max-width: 40ch; color: color-mix(in oklab, var(--v-ink) 82%, transparent); }
+  .hero__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v-4) var(--v-6); margin-top: var(--v-6); }
+  .hero__tel { text-decoration: none; color: inherit; font-size: var(--v-t-sm); display: inline-flex; align-items: center; min-height: 44px; gap: .35em; }
+  .hero__tel b { font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+  .hero__note { position: absolute; z-index: 3; right: var(--v-gutter); bottom: clamp(5rem, 16vh, 10rem); text-align: right; display: grid; gap: .3em; font-size: var(--v-t-sm); color: var(--v-ink); }
+  .hero__note .v-nums { font-family: var(--v-font-display); font-weight: 500; font-size: var(--v-t-xl); letter-spacing: .02em; }
+  @media (max-width: 860px) {
+    .hero__photo { top: auto; height: 46svh; --hx: 50%; }
+    .hero__wash { background: linear-gradient(to bottom, var(--v-canvas) 0%, transparent 40%); top: auto; height: 46svh; }
+    .v-page .hero__copy { top: 6.6rem; bottom: auto; max-width: none; }
+    .hero__copy .v-display { font-size: clamp(1.9rem, 1.2rem + 3vw, 2.4rem); }
+    .hero__copy .v-lede { font-size: var(--v-t-base); margin-top: var(--v-4); max-width: none; }
+    .hero__cta { margin-top: var(--v-5); }
+    .hero__note { display: none; }
+  }
+  @media (max-width: 600px) and (max-height: 700px) { .hero__photo, .hero__wash { height: 38svh; } .hero__copy .v-lede { display: none; } }
+
+  /* ---- акт 2 · пиво этой недели (список правится как текст) -------------------- */
+  .beer { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: var(--v-9); align-items: start; }
+  .beer__head { display: grid; gap: var(--v-3); margin-bottom: var(--v-6); max-width: 46rem; }
+  .beer__head .v-display--lg { font-size: clamp(1.9rem, 1.2rem + 2.3vw, 3.3rem); }
+  .tap { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) 7.5rem 5.5rem; gap: var(--v-1) var(--v-5); align-items: center; padding: var(--v-4) 0; border-top: 1px solid var(--v-hair); }
+  .taps li:last-child { border-bottom: 1px solid var(--v-hair); }
+  .tap__n { font-family: var(--v-font-display); font-weight: 500; font-size: var(--v-t-lg); color: var(--v-accent); }
+  .tap__name { font-family: var(--v-font-display); font-weight: 400; font-size: var(--v-t-base); letter-spacing: .02em; text-transform: uppercase; display: block; line-height: 1.15; }
+  .tap__style { color: var(--v-ink-soft); font-size: var(--v-t-sm); display: block; }
+  .tap__abv { display: grid; gap: .3em; font-size: var(--v-t-xs); color: var(--v-ink-soft); font-variant-numeric: tabular-nums; }
+  .tap__abv i { display: block; height: 4px; border-radius: 2px; background: var(--v-hair-strong); position: relative; overflow: hidden; }
+  .tap__abv i::after { content: ""; position: absolute; inset: 0; width: calc(var(--abv, 5) * 8%); background: var(--v-accent); border-radius: 2px; }
+  .tap__price { font-weight: 600; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .beer__fig { position: sticky; top: clamp(5rem, 12vh, 7rem); border-radius: var(--v-radius); overflow: hidden; box-shadow: var(--v-e2); aspect-ratio: 4 / 5; background: var(--v-surface); }
+  .beer__fig img { width: 100%; height: 100%; object-fit: cover; }
+  .beer__hint { margin-top: var(--v-5); color: var(--v-ink-soft); font-size: var(--v-t-sm); max-width: 54ch; }
+  @media (max-width: 860px) {
+    .beer { grid-template-columns: 1fr; gap: var(--v-6); }
+    .beer__fig { position: static; aspect-ratio: 4 / 3; order: -1; }
+    .tap { grid-template-columns: 1.8rem minmax(0, 1fr) auto; }
+    .tap__abv { grid-column: 2; grid-row: 2; max-width: 9rem; }
+    .tap__price { grid-column: 3; grid-row: 1 / span 2; }
+    .tap__name { font-size: var(--v-t-base); }
+  }
+
+  /* ---- кружка: при наведении (или нажатии) наливается пиво ---------------------- */
+  .beer__top { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--v-6); }
+  .mug { flex: none; display: grid; justify-items: center; gap: var(--v-2); background: none; border: 0; padding: 0; color: var(--v-ink-soft); font: inherit; font-size: var(--v-t-xs); cursor: pointer; }
+  .mug svg { width: clamp(5.5rem, 9vw, 8rem); height: auto; overflow: visible; }
+  .mug__beer { transform: translateY(100%); transition: transform 1.6s cubic-bezier(.3,.7,.3,1); }
+  .mug__foam { transform: translateY(100%); transition: transform 1.6s cubic-bezier(.3,.7,.3,1); }
+  .mug__bub circle { opacity: 0; }
+  .mug:hover .mug__beer, .mug:focus-visible .mug__beer, .mug.is-full .mug__beer { transform: translateY(0); }
+  .mug:hover .mug__foam, .mug:focus-visible .mug__foam, .mug.is-full .mug__foam { transform: translateY(0); }
+  .mug:hover .mug__bub circle, .mug:focus-visible .mug__bub circle, .mug.is-full .mug__bub circle { animation: bub 2.2s ease-in infinite; }
+  .mug__bub circle:nth-child(2) { animation-delay: .5s !important; } .mug__bub circle:nth-child(3) { animation-delay: 1.1s !important; }
+  @keyframes bub { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: .8; } 100% { opacity: 0; transform: translateY(-44px); } }
+  .mug:hover .mug__lbl::before, .mug.is-full .mug__lbl::before { content: "Наливаем…"; }
+  .mug__lbl::before { content: "Наведите – нальём"; }
+  @media (prefers-reduced-motion: reduce) { .mug__beer, .mug__foam { transition: none; } .mug__bub circle { animation: none !important; } }
+  @media (max-width: 860px) { .mug__lbl::before { content: "Нажмите – нальём"; } .mug.is-full .mug__lbl::before { content: "Наливаем…"; } }
+
+  /* ---- акт 3 · афиша ---------------------------------------------------------- */
+  .gigs { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--v-9); align-items: start; }
+  .gigs__fig { position: relative; border-radius: var(--v-radius); overflow: hidden; box-shadow: var(--v-e2); aspect-ratio: 4 / 3; }
+  .gigs__fig img { width: 100%; height: 100%; object-fit: cover; }
+  .gigs__head { display: grid; gap: var(--v-3); margin-bottom: var(--v-6); }
+  .gigs__head .v-display--lg { font-size: clamp(1.9rem, 1.2rem + 2.3vw, 3.3rem); }
+  .gig { display: grid; grid-template-columns: 6rem minmax(0, 1fr) auto; gap: var(--v-1) var(--v-5); align-items: baseline; padding: var(--v-5) 0; border-top: 1px solid var(--v-hair); }
+  .gigs__list li:last-child { border-bottom: 1px solid var(--v-hair); }
+  .gig__date { font-family: var(--v-font-display); font-weight: 500; font-size: var(--v-t-lg); color: var(--v-accent); line-height: 1.1; text-transform: uppercase; }
+  .gig__band { font-family: var(--v-font-display); font-weight: 500; font-size: var(--v-t-lg); text-transform: uppercase; letter-spacing: .02em; line-height: 1.15; }
+  .gig__band a { color: inherit; text-decoration-color: var(--v-hair-strong); text-underline-offset: .18em; }
+  .gig__meta { color: var(--v-ink-soft); font-size: var(--v-t-sm); display: block; margin-top: .2em; }
+  .gig__time { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+  @media (max-width: 860px) {
+    .gigs { grid-template-columns: 1fr; gap: var(--v-6); }
+    .gig { grid-template-columns: 4.6rem minmax(0, 1fr) auto; gap: var(--v-1) var(--v-3); }
+    .gig__band, .gig__date { font-size: var(--v-t-base); }
+  }
+
+  /* ---- акт 4 · атмосфера ---------------------------------------------------- */
+  .atm__fig { position: relative; aspect-ratio: 21 / 9; border-radius: var(--v-radius); overflow: hidden; box-shadow: var(--v-e2); background: var(--v-surface); margin-bottom: var(--v-8); }
+  .atm__fig .v-layer { inset: -18% 0; }
+  .atm__fig img { width: 100%; height: 100%; left: 0; top: 0; object-fit: cover; object-position: 50% 62%; }
+  .atm { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--v-7) var(--v-9); align-items: start; }
+  .atm__head { display: grid; gap: var(--v-3); position: sticky; top: clamp(5rem, 12vh, 7rem); }
+  .atm__head p { color: var(--v-ink-soft); max-width: 34ch; text-wrap: pretty; }
+  .fact { padding: var(--v-5) 0; border-top: 1px solid var(--v-hair); display: grid; grid-template-columns: minmax(0, .5fr) minmax(0, 1fr); gap: var(--v-2) var(--v-6); align-items: baseline; }
+  .fact:last-child { border-bottom: 1px solid var(--v-hair); }
+  .fact b { font-family: var(--v-font-display); font-weight: 400; font-size: var(--v-t-base); letter-spacing: .02em; text-transform: uppercase; line-height: 1.15; }
+  .fact span { color: var(--v-ink-soft); text-wrap: pretty; max-width: 48ch; }
+  @media (max-width: 860px) {
+    .atm__fig { aspect-ratio: 4 / 3; margin-bottom: var(--v-6); }
+    .atm { grid-template-columns: 1fr; gap: var(--v-5); }
+    .atm__head { position: static; }
+    .fact { grid-template-columns: 1fr; gap: var(--v-1); }
+    .fact b { font-size: var(--v-t-base); }
+  }
+
+  /* ---- акт 5 · отзывы с Яндекс.Карт (честные слоты) ------------------------- */
+  .reviews__head { display: grid; gap: var(--v-3); margin-bottom: var(--v-7); }
+  .reviews__list { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--v-6); align-items: start; }
+  .reviews__item { padding-top: var(--v-5); border-top: 1px solid var(--v-hair); }
+  .reviews__item--big .reviews__text { font-size: var(--v-t-lg); line-height: 1.4; }
+  .reviews__text { text-wrap: pretty; }
+  .reviews__meta { margin-top: var(--v-4); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+  .reviews__meta b { color: var(--v-ink); font-weight: 600; }
+  @media (max-width: 860px) { .reviews__list { grid-template-columns: 1fr; } }
+
+  /* ---- акт 6 · как добраться (финал держит реплику, футер в сцене) ---------- */
+  .close { height: 100%; display: grid; grid-template-rows: 1fr auto; padding: 0 var(--v-gutter);
+    background: radial-gradient(60rem 40rem at calc(var(--v-mx, .5) * 100%) calc(var(--v-my, .5) * 100%), var(--v-accent-10), transparent 60%); }
+  .close__inner { align-self: center; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: var(--v-8); align-items: end; padding-top: var(--v-9); }
+  .close__inner .v-display { margin-bottom: var(--v-5); }
+  .close__inner .v-lede { max-width: 40ch; }
+  .close__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v-4) var(--v-6); margin-top: var(--v-6); }
+  .close__tel { font-family: var(--v-font-display); font-weight: 500; font-size: var(--v-t-xl); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; color: var(--v-ink); letter-spacing: .02em; }
+  .close__hint { margin-top: var(--v-4); font-size: var(--v-t-sm); color: var(--v-ink-soft); max-width: 46ch; }
+  .close__meta { display: grid; gap: var(--v-3); color: var(--v-ink-soft); font-size: var(--v-t-sm); }
+  .close__meta b { color: var(--v-ink); font-weight: 600; display: block; font-size: var(--v-t-xs); letter-spacing: var(--v-track-wide); text-transform: uppercase; margin-bottom: .2em; }
+  .close__meta a { color: var(--v-ink); display: inline-flex; align-items: center; min-height: 44px; }
+  .foot { display: flex; justify-content: space-between; gap: var(--v-4); padding: var(--v-6) 0; border-top: 1px solid var(--v-hair); font-size: var(--v-t-xs); color: var(--v-ink-soft); flex-wrap: wrap; }
+  @media (max-width: 860px) {
+    .close { padding-bottom: env(safe-area-inset-bottom); }
+    .close__inner { grid-template-columns: 1fr; gap: var(--v-6); padding-top: var(--v-8); align-items: start; }
+    .close__tel { font-size: var(--v-t-lg); }
+    .close__meta b { font-size: .9375rem; }
+    .foot__more { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="v-page">
+  <span data-v-progress></span>
+
+  <header class="bar">
+    <a class="bar__mark" href="#top"><i aria-hidden="true"></i>{{компания}}</a>
+    <nav class="bar__menu" aria-label="Разделы сайта">
+      <a href="#pivo">Пиво</a><a href="#afisha">Афиша</a><a href="#atmosfera">Атмосфера</a><a href="#kontakty">Контакты</a>
+    </nav>
+    <div class="bar__right">
+      <a class="bar__tel" href="tel:{{телефон}}">{{телефон}}</a>
+      <a class="v-btn" href="{{ссылка-кнопки}}" target="_blank" rel="noopener">Как добраться</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1 · УЗНАВАНИЕ и ОБЕЩАНИЕ -->
+    <section id="top" data-v-act="pin" data-v-span="1.6" data-v-drift="#0e1a15" aria-label="Бар: пиво этой недели и афиша">
+      <div data-v-stage class="hero">
+        <div class="hero__photo">
+          <div class="v-layer hero__stack" data-v-parallax="-0.25">
+            <picture>
+              <source media="(max-width: 860px)" srcset="assets/hero-m.webp">
+              <img class="hero__img" src="assets/hero.webp" alt="Барная стойка с рядом пивных кранов и бокалом золотистого пива" width="1920" height="1080" fetchpriority="high">
+            </picture>
+          </div>
+          <div class="hero__glow" aria-hidden="true"></div>
+          <div class="hero__wash" aria-hidden="true"></div>
+        </div>
+
+        <div class="hero__note" data-v-cue="0 1 0 0" data-v-rise="0">
+          <span class="v-label">Открыты</span>
+          <span class="v-nums">{{часы}}</span>
+          <span>{{адрес}}, {{город}}</span>
+        </div>
+
+        <div class="v-copy v-copy--lead hero__copy" data-v-cue="0 1 0 0">
+          <span class="v-label hero__label">{{компания}} · бар в {{город}}</span>
+          <h1 class="v-display v-display--xl" data-v-kinetic="lines">Сегодня в кране – шесть сортов. Вечером – живая музыка</h1>
+          <p class="v-lede">Бар в {{город}}. Что наливаем на этой неделе и кто выходит на сцену – смотрите здесь, до того как соберётесь.</p>
+          <div class="hero__cta">
+            <a class="v-btn" href="{{ссылка-кнопки}}" target="_blank" rel="noopener">Как добраться</a>
+            <a class="hero__tel" href="tel:{{телефон}}">или позвоните <b>{{телефон}}</b></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ДЕМО: названия, стили, крепость и цены ниже придуманы для примера, заказчик подставит свои. -->
+    <!-- 2 · ПИВО ЭТОЙ НЕДЕЛИ. РЕДАКТИРОВАНИЕ: меняйте только текст внутри <li> (название, стиль, крепость, цену). Число после --abv: – крепость в % (ползунок). -->
+    <section class="v-section" data-v-act="flow" data-v-drift="#13221b" id="pivo" aria-label="Пиво этой недели">
+      <div class="v-wrap beer">
+        <div>
+          <div class="beer__top"><div class="beer__head" data-v-in data-v-stagger="60">
+            <span class="v-label">В кране на этой неделе</span>
+            <h2 class="v-display v-display--lg">Пиво этой недели</h2>
+            <p class="v-body v-soft">Приходишь – а пива уже нет? Список обновляется раз в неделю, поэтому то, что вы видите ниже, мы наливаем сейчас.</p>
+          </div>
+            <button class="mug" type="button" aria-label="Кружка: наведите, и пиво нальётся">
+              <svg viewBox="0 0 120 130" aria-hidden="true">
+                <defs><clipPath id="mugclip"><path d="M24 14h58l-5 98a8 8 0 0 1-8 7H37a8 8 0 0 1-8-7z"/></clipPath></defs>
+                <g clip-path="url(#mugclip)">
+                  <rect class="mug__beer" x="20" y="22" width="68" height="100" fill="#e08a4a"/>
+                  <rect class="mug__foam" x="20" y="8" width="68" height="22" fill="#f4ecd8"/>
+                  <g class="mug__bub" fill="#f4ecd8"><circle cx="44" cy="104" r="2.2"/><circle cx="58" cy="108" r="1.8"/><circle cx="68" cy="102" r="2.4"/></g>
+                </g>
+                <path d="M24 14h58l-5 98a8 8 0 0 1-8 7H37a8 8 0 0 1-8-7z" fill="none" stroke="#ece8da" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M83 34h9a14 14 0 0 1 14 14v14a14 14 0 0 1-14 14h-11" fill="none" stroke="#ece8da" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+              <span class="mug__lbl"></span>
+            </button>
+          </div>
+          <ol class="taps" data-v-in data-v-stagger="60">
+            <li class="tap"><span class="tap__n">1</span><div><b class="tap__name">Золотой Берег</b><span class="tap__style">Светлый лагер</span></div><span class="tap__abv"><span>4,6 %</span><i style="--abv:4.6"></i></span><span class="tap__price">290&nbsp;₽</span></li>
+            <li class="tap"><span class="tap__n">2</span><div><b class="tap__name">Янтарный Лис</b><span class="tap__style">Янтарный эль (Amber Ale)</span></div><span class="tap__abv"><span>5,2 %</span><i style="--abv:5.2"></i></span><span class="tap__price">340&nbsp;₽</span></li>
+            <li class="tap"><span class="tap__n">3</span><div><b class="tap__name">Хмельная Гроза</b><span class="tap__style">IPA</span></div><span class="tap__abv"><span>6,4 %</span><i style="--abv:6.4"></i></span><span class="tap__price">380&nbsp;₽</span></li>
+            <li class="tap"><span class="tap__n">4</span><div><b class="tap__name">Медный Колокол</b><span class="tap__style">Красный эль</span></div><span class="tap__abv"><span>5,5 %</span><i style="--abv:5.5"></i></span><span class="tap__price">350&nbsp;₽</span></li>
+            <li class="tap"><span class="tap__n">5</span><div><b class="tap__name">Чёрный Бархат</b><span class="tap__style">Стаут</span></div><span class="tap__abv"><span>6,0 %</span><i style="--abv:6.0"></i></span><span class="tap__price">370&nbsp;₽</span></li>
+            <li class="tap"><span class="tap__n">6</span><div><b class="tap__name">Пшеничный Туман</b><span class="tap__style">Нефильтрованное пшеничное</span></div><span class="tap__abv"><span>5,0 %</span><i style="--abv:5.0"></i></span><span class="tap__price">320&nbsp;₽</span></li>
+          </ol>
+          <p class="beer__hint">Цена – за 400 мл. Если сорт закончился раньше срока, мы уберём его из списка в тот же день.</p>
+        </div>
+        <figure class="beer__fig" data-v-reveal="right" data-v-reveal-at="0.2 0.55">
+          <img src="assets/pivo.webp" srcset="assets/pivo-900.webp 900w, assets/pivo.webp 1600w" sizes="(max-width: 860px) 100vw, 28rem" alt="Шесть бокалов пива от светлого лагера до чёрного стаута на барной стойке" width="1600" height="1200" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ДЕМО: группы, даты и время придуманы для примера; ссылки на группы заказчик добавит сам (<a href="…">название</a>). -->
+    <!-- 3 · АФИША. РЕДАКТИРОВАНИЕ: меняйте текст внутри <li> (дата, группа, время, вход, ссылка на группу). Лишнюю строку можно удалить целиком. -->
+    <section class="v-section" data-v-act="flow" data-v-drift="#0e1a15" id="afisha" aria-label="Афиша выступлений">
+      <div class="v-wrap gigs">
+        <figure class="gigs__fig" data-v-reveal="left" data-v-reveal-at="0.2 0.55">
+          <img src="assets/stage.webp" srcset="assets/stage-900.webp 900w, assets/stage.webp 1600w" sizes="(max-width: 860px) 100vw, 30rem" alt="Угол для живой музыки в баре: гитара, барабаны и усилитель в тёплом свете" width="1600" height="1200" loading="lazy" decoding="async">
+        </figure>
+        <div>
+          <div class="gigs__head" data-v-in data-v-stagger="60">
+            <span class="v-label">Живая музыка</span>
+            <h2 class="v-display v-display--lg">Афиша: кто играет</h2>
+            <p class="v-body v-soft">Ближайшие выступления. Дата, время и вход – сразу в строке, чтобы решить до того, как выйдете из дома.</p>
+          </div>
+          <ul class="gigs__list" data-v-in data-v-stagger="60">
+            <li class="gig"><span class="gig__date">20 ноя · пт</span><div><span class="gig__band">Северный Ветер</span><span class="gig__meta">Инди-рок. Вход свободный</span></div><span class="gig__time">20:00</span></li>
+            <li class="gig"><span class="gig__date">21 ноя · сб</span><div><span class="gig__band">Трио «Старый Паром»</span><span class="gig__meta">Фолк и ирландские мелодии. Вход 300 ₽</span></div><span class="gig__time">21:00</span></li>
+            <li class="gig"><span class="gig__date">27 ноя · пт</span><div><span class="gig__band">The Рыжие Лисы</span><span class="gig__meta">Блюз-рок. Вход свободный</span></div><span class="gig__time">20:30</span></li>
+            <li class="gig"><span class="gig__date">28 ноя · сб</span><div><span class="gig__band">Медный Тон</span><span class="gig__meta">Джаз-квартет. Вход 400 ₽</span></div><span class="gig__time">21:00</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · АТМОСФЕРА -->
+    <section class="v-section" data-v-act="flow" data-v-drift="#13221b" id="atmosfera" aria-label="Атмосфера бара">
+      <div class="v-wrap">
+        <figure class="atm__fig">
+          <div class="v-layer" data-v-parallax="0.4">
+            <img src="assets/zal.webp" srcset="assets/zal-900.webp 900w, assets/zal.webp 1600w" sizes="(max-width: 860px) 100vw, 76rem" alt="Бар вечером: бокал стаута и скрипка на стойке, бармен у кранов, гости за разговором" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+        </figure>
+        <div class="atm">
+          <div class="atm__head" data-v-in data-v-stagger="60">
+            <span class="v-label">Вечер в баре</span>
+            <h2 class="v-display v-display--md">Зайти и остаться</h2>
+            <p>Три вещи, которые мы обещаем на сайте и держим в зале.</p>
+          </div>
+          <ul data-v-in data-v-stagger="80">
+            <li class="fact"><b>Список – свежий</b><span>Пиво и афишу правим раз в неделю. Что на сайте, то и в кране, и на сцене.</span></li>
+            <li class="fact"><b>Музыка – по афише</b><span>Дата, группа и время указаны заранее, вход – платный или свободный – тоже.</span></li>
+            <li class="fact"><b>Адрес – на виду</b><span>Часы и дорога – в начале и в конце страницы, не нужно искать по соцсетям.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ДЕМО: отзывы ниже вымышленные (по просьбе заказчика демо). Перед сдачей заменить дословными отзывами с Яндекс.Карт или убрать блок. -->
+    <!-- 5 · ДОВЕРИЕ: отзывы с Яндекс.Карт (только настоящие; нет отзывов – удалить секцию целиком) -->
+    <section class="v-section" data-v-act="flow" data-v-drift="#0e1a15" id="otzyvy" data-slot-optional aria-label="Отзывы с Яндекс.Карт">
+      <div class="v-wrap">
+        <div class="reviews__head" data-v-in data-v-stagger="60">
+          <span class="v-label">Отзывы</span>
+          <h2 class="v-display v-display--md">Отзывы гостей</h2>
+        </div>
+        <ul class="reviews__list" data-v-in data-v-stagger="90">
+          <li class="reviews__item reviews__item--big"><p class="reviews__text">«Зашли на кружку, а остались до закрытия. Список пива на сайте не врёт: что написано, то и в кране. Взяли стаут – бархатный, пена плотная.»</p><p class="reviews__meta"><b>Андрей</b> · 12 ноября</p></li>
+          <li class="reviews__item"><p class="reviews__text">«Приятный бар, где можно поговорить: музыка живая, но не оглушает. Бармен подсказал сорт под мой вкус, не навязывая дорогое.»</p><p class="reviews__meta"><b>Мария</b> · 3 ноября</p></li>
+          <li class="reviews__item"><p class="reviews__text">«Были в пятницу на выступлении. Скрипка и гитара вживую – отличная атмосфера. Приходите пораньше, места быстро заканчиваются.»</p><p class="reviews__meta"><b>Дмитрий</b> · 27 октября</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6 · ДЕЙСТВИЕ: как добраться -->
+    <section data-v-act="pin" data-v-span="1.3" data-v-drift="#0e1a15" id="kontakty" aria-label="Как добраться">
+      <div data-v-stage>
+        <div class="close" data-v-spotlight>
+          <div class="close__inner">
+            <div data-v-cue="0.04">
+              <h2 class="v-display v-display--lg">Заходите сегодня</h2>
+              <p class="v-lede">Адрес, часы и дорога – ниже. Если хотите занять стол, позвоните заранее.</p>
+              <div class="close__cta">
+                <a class="v-btn" href="{{ссылка-кнопки}}" target="_blank" rel="noopener" data-v-magnet="0.22" data-v-rise="0">Как добраться</a>
+                <a class="close__tel" href="tel:{{телефон}}">{{телефон}}</a>
+              </div>
+              <p class="close__hint">Пиво и афиша – на этой странице выше, обновляются раз в неделю.</p>
+            </div>
+            <div class="close__meta" data-v-cue="0.1">
+              <span><b>Часы работы</b>{{часы}}</span>
+              <span><b>Адрес</b>{{адрес}}, {{город}}</span>
+              <span><b>Мы в сети</b><a href="{{соцсети}}" target="_blank" rel="noopener" data-slot-optional>{{соцсети}}</a></span>
+            </div>
+          </div>
+          <footer class="foot">
+            <span>{{компания}} · {{город}}</span>
+            <span data-slot-optional>{{юрлицо}} · ИНН {{ИНН}}</span>
+            <span class="foot__more">Крафтовое пиво и живая музыка</span>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="vibe.js"></script>
+<script>
+  Vibe.mount(document.querySelector('.v-page'));
+  // кружка на телефоне: нажатие наливает / опустошает
+  (function () { var m = document.querySelector('.mug'); if (m) m.addEventListener('click', function () { m.classList.toggle('is-full'); }); })();
+  (function () {
+    var bar = document.querySelector('.bar'), on = null;
+    function tick() { var s = window.scrollY > 40; if (s !== on) { on = s; bar.classList.toggle('is-scrolled', s); } }
+    window.addEventListener('scroll', tick, { passive: true }); tick();
+  })();
+</script>
+</body>
+</html>
